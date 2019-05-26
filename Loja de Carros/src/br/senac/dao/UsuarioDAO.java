@@ -97,6 +97,35 @@ public class UsuarioDAO {
         }
         return consulta;
     }
+    public List<Usuario> consultarPorUsername(String username) {
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Usuario> usuarios = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM USUARIO WHERE username LIKE ?;");
+            stmt.setString(1,""+username+"");
+            rs = stmt.executeQuery();
+ 
+            
+             while(rs.next()){
+                Usuario us = new Usuario();
+                
+                us.setId(rs.getInt("id"));
+                us.setNome(rs.getString("nome"));
+                us.setUsername(rs.getString("username"));
+                
+                usuarios.add(us);
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return usuarios;
+    }
 
     public List<Usuario> consultarPorId(int id) {
         Connection con = ConnectionFactory.obterConexao();

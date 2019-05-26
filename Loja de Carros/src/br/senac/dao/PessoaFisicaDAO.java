@@ -139,7 +139,7 @@ public class PessoaFisicaDAO {
         
         
         try{
-            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ?;");
+            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ? AND TIPO = 'pf';");
             stmt.setString(1,""+id+"");
             rs = stmt.executeQuery();
             
@@ -220,4 +220,6 @@ public class PessoaFisicaDAO {
             ConnectionFactory.fecharConexao(con,stmt);
         }
     }
+
+ 
 }

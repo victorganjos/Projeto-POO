@@ -165,11 +165,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Produtos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CadastroProdutosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_ConsultaCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar Cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ConsultaClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_Estoque">
               <Properties>
@@ -180,6 +186,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar Usu&#xe1;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ConsultaUsuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_ConsultaProduto">
               <Properties>

@@ -2,6 +2,7 @@ package br.senac.controller;
 
 import br.senac.dao.UsuarioDAO;
 import br.senac.model.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,33 @@ public class UsuarioController {
     public List<Usuario> consultarPorId(int id) {
         UsuarioDAO usuario = new UsuarioDAO();
         return usuario.consultarPorId(id);
-    }   
+    }
+    
+    public static ArrayList<String[]> consulta() {
+        List<Usuario> cliente = new UsuarioDAO().consultar();
+        ArrayList<String[]> listaUsuarios = new ArrayList<>();
+
+        for (int i = 0; i < cliente.size(); i++) {
+            listaUsuarios.add(new String[]{String.valueOf(cliente.get(i).getId()),
+                cliente.get(i).getNome(), 
+                String.valueOf(cliente.get(i).getUsername())});
+
+        }
+        return listaUsuarios;
+
+    }
+    
+    public static ArrayList<String[]> consultaPorNome(String pNome) {
+        List<Usuario> usuario = new UsuarioDAO().consultarPorUsername(pNome);
+
+        ArrayList<String[]> listaUsuarios = new ArrayList<>();
+
+        for (int i = 0; i < usuario.size(); i++) {
+            listaUsuarios.add(new String[]{String.valueOf(usuario.get(i).getId()), usuario.get(i).getNome(), usuario.get(i).getUsername()});
+
+        }
+
+        return listaUsuarios;
+
+    }
 }

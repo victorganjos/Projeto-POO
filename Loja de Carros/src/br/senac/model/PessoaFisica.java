@@ -28,7 +28,7 @@ public class PessoaFisica extends Cliente {
 
     public PessoaFisica() {
     }
-
+    
     public long getCpf() {
         return cpf;
     }

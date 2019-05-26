@@ -21,7 +21,7 @@ public class PessoaJuridicaDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO CLIENTE(nome_fantasia,cnpj,nome,telefone,endereco,"
+            stmt = con.prepareStatement("INSERT INTO CLIENTE(nome,nome_fantasia,cnpj,telefone,endereco,"
                     + "numero_residencia,estado,cidade,bairro,cep,tipo) VALUE (?,?,?,?,?,?,?,?,?,?,?);");
 
             stmt.setString(1, pj.getNome());

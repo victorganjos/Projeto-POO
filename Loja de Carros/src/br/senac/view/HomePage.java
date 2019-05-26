@@ -73,12 +73,27 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         btn_CadastroProdutos.setText("Cadastro de Produtos");
+        btn_CadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastroProdutosActionPerformed(evt);
+            }
+        });
 
         btn_ConsultaCliente.setText("Consultar Cliente");
+        btn_ConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConsultaClienteActionPerformed(evt);
+            }
+        });
 
         btn_Estoque.setText("Estoque");
 
         btn_ConsultaUsuario.setText("Consultar Usuário");
+        btn_ConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConsultaUsuarioActionPerformed(evt);
+            }
+        });
 
         btn_ConsultaProduto.setText("Consultar Produto");
 
@@ -236,6 +251,38 @@ public class HomePage extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btn_CadastroClienteActionPerformed
+
+    private void btn_ConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaClienteActionPerformed
+        String value = JOptionPane.showInputDialog(null, "Digite 1 - para cliente pessoa física \nDigite 2 - para pessoa jurídica");
+        switch (value) {
+            case "1":
+                ConsultaPF consultaPF = new ConsultaPF();
+                consultaPF.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            case "2":
+                ConsultaPJ consultaPJ = new ConsultaPJ();
+                consultaPJ.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                break;
+
+        }
+
+    }//GEN-LAST:event_btn_ConsultaClienteActionPerformed
+
+    private void btn_CadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_CadastroProdutosActionPerformed
+
+    private void btn_ConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaUsuarioActionPerformed
+        // TODO add your handling code here:
+        ConsultaUsuario consultaUsuario = new ConsultaUsuario();
+        consultaUsuario.setVisible(true);
+        HomePage.this.dispose();
+    }//GEN-LAST:event_btn_ConsultaUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
