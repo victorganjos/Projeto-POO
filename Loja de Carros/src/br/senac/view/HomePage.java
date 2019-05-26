@@ -96,6 +96,11 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         btn_ConsultaProduto.setText("Consultar Produto");
+        btn_ConsultaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConsultaProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_HomeBackgroundLayout = new javax.swing.GroupLayout(pnl_HomeBackground);
         pnl_HomeBackground.setLayout(pnl_HomeBackgroundLayout);
@@ -274,7 +279,9 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ConsultaClienteActionPerformed
 
     private void btn_CadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroProdutosActionPerformed
-        // TODO add your handling code here:
+        CadastroProduto cadastroP = new CadastroProduto();
+        cadastroP.setVisible(true);
+        HomePage.this.dispose();
     }//GEN-LAST:event_btn_CadastroProdutosActionPerformed
 
     private void btn_ConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaUsuarioActionPerformed
@@ -283,6 +290,13 @@ public class HomePage extends javax.swing.JFrame {
         consultaUsuario.setVisible(true);
         HomePage.this.dispose();
     }//GEN-LAST:event_btn_ConsultaUsuarioActionPerformed
+
+    private void btn_ConsultaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaProdutoActionPerformed
+        // TODO add your handling code here:
+        ConsultaProduto consultaProduto = new ConsultaProduto();
+        consultaProduto.setVisible(true);
+        HomePage.this.dispose();
+    }//GEN-LAST:event_btn_ConsultaProdutoActionPerformed
 
     /**
      * @param args the command line arguments

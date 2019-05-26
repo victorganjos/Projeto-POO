@@ -2,6 +2,7 @@ package br.senac.controller;
 
 import br.senac.dao.ProdutoDAO;
 import br.senac.model.Produto;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,34 @@ public class ProdutoController {
     public static List<Produto> consultarPorId(int id) {
         ProdutoDAO produto = new ProdutoDAO();
         return produto.consultarPorId(id);
+    }
+ 
+    public static ArrayList<String[]> consulta() {
+        List<Produto> produto = new ProdutoDAO().consultar();
+        ArrayList<String[]> listaProduto = new ArrayList<>();
+        for (int i = 0; i < produto.size(); i++) {
+            listaProduto.add(new String[]{String.valueOf(produto.get(i).getId()),
+                produto.get(i).getModelo(), produto.get(i).getMarca(),
+                String.valueOf(produto.get(i).getAno()),
+                produto.get(i).getCor(),
+                String.valueOf(produto.get(i).getPlaca()),
+                String.valueOf(produto.get(i).getValorCompra())});
+
+        }
+        return listaProduto;
+
+    }
+    public static ArrayList<String[]> consultaPorNome(String pNome) {
+        List<Produto> cliente = new ProdutoDAO().consultarPorNome(pNome);
+
+        ArrayList<String[]> listaClientes = new ArrayList<>();
+
+        for (int i = 0; i < cliente.size(); i++) {
+            listaClientes.add(new String[]{String.valueOf(cliente.get(i).getId()), cliente.get(i).getModelo(), cliente.get(i).getMarca(), cliente.get(i).getAno(), cliente.get(i).getCor(), cliente.get(i).getPlaca(), String.valueOf(cliente.get(i).getValorCompra())});
+
+        }
+
+        return listaClientes;
+
     }
 }
