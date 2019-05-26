@@ -69,6 +69,8 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         txt_NomeUsuario = new javax.swing.JTextField();
         btn_BuscarNomeUsuario = new javax.swing.JButton();
         btn_HomePage = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         pnl_TitleClientePageBackground = new javax.swing.JPanel();
         lbl_TitleLoginPage = new javax.swing.JLabel();
 
@@ -116,6 +118,20 @@ public class ConsultaUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_ConsultaUsuarioLayout = new javax.swing.GroupLayout(pnl_ConsultaUsuario);
         pnl_ConsultaUsuario.setLayout(pnl_ConsultaUsuarioLayout);
         pnl_ConsultaUsuarioLayout.setHorizontalGroup(
@@ -133,6 +149,12 @@ public class ConsultaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_HomePage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(pnl_ConsultaUsuarioLayout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_ConsultaUsuarioLayout.setVerticalGroup(
             pnl_ConsultaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +166,12 @@ public class ConsultaUsuario extends javax.swing.JFrame {
                     .addComponent(btn_BuscarNomeUsuario)
                     .addComponent(btn_HomePage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scp_ConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(scp_ConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_ConsultaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pnl_TitleClientePageBackground.setBackground(new java.awt.Color(0, 99, 149));
@@ -209,6 +235,26 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         ConsultaUsuario.this.dispose();
     }//GEN-LAST:event_btn_HomePageActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (tbl_ConsultaUsuario.getSelectedRow() != -1) {
+            //  List<PessoaFisica> linhasClientes = PessoaFisicaController.consultarPorId((int) tbl_ConsultaPF.getValueAt(tbl_ConsultaPF.getSelectedRow(), 0));
+            AtualizaUsuario atualiza = new AtualizaUsuario(Integer.parseInt((String) tbl_ConsultaUsuario.getValueAt(tbl_ConsultaUsuario.getSelectedRow(), 0)));
+            atualiza.setVisible(true);
+            ConsultaUsuario.this.dispose();
+
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (tbl_ConsultaUsuario.getSelectedRow() != -1) {
+
+            UsuarioController.excluir(Integer.parseInt((String) tbl_ConsultaUsuario.getValueAt(tbl_ConsultaUsuario.getSelectedRow(), 0)));
+            LoadTable();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +308,8 @@ public class ConsultaUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_BuscarNomeUsuario;
     private javax.swing.JButton btn_HomePage;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lbl_NomeUsuario;
     private javax.swing.JLabel lbl_TitleLoginPage;
     private javax.swing.JPanel pnl_ConsultaUsuario;

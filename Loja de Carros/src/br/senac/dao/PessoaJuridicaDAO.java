@@ -130,7 +130,7 @@ public class PessoaJuridicaDAO {
         List<PessoaJuridica> clientes = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ?;");
+            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ? AND TIPO = 'pj';");
             stmt.setString(1, "" + id + "");
             rs = stmt.executeQuery();
 
@@ -165,7 +165,7 @@ public class PessoaJuridicaDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE CLIENTE SET nome = ?,nome_fantasia = ?,cpf = ?,rg = ?,telefone = ?,endereco = ?,numero_residencia = ?,"
+            stmt = con.prepareStatement("UPDATE CLIENTE SET nome = ?,nome_fantasia = ?,cnpj = ?,telefone = ?,endereco = ?,numero_residencia = ?,"
                     + "estado = ?,cidade = ?,bairro = ?,cep = ?,tipo = ? WHERE id = ?");
 
             stmt.setString(1, pj.getNome());
@@ -180,6 +180,7 @@ public class PessoaJuridicaDAO {
             stmt.setLong(10, pj.getCep());
             stmt.setString(11, pj.getTipo());
             stmt.setInt(12, pj.getId());
+          
 
             stmt.executeUpdate();
         } catch (SQLException ex) {

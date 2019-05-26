@@ -77,6 +77,8 @@ public class ConsultaPJ extends javax.swing.JFrame {
         txt_NomeJuridico = new javax.swing.JTextField();
         btn_BuscarNomeJuridico = new javax.swing.JButton();
         btn_HomePage = new javax.swing.JButton();
+        btn_Atualizar = new javax.swing.JButton();
+        btn_Excluir = new javax.swing.JButton();
         pnl_TitleClientePageBackground = new javax.swing.JPanel();
         lbl_TitleLoginPage = new javax.swing.JLabel();
 
@@ -124,6 +126,20 @@ public class ConsultaPJ extends javax.swing.JFrame {
             }
         });
 
+        btn_Atualizar.setText("Atualizar");
+        btn_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AtualizarActionPerformed(evt);
+            }
+        });
+
+        btn_Excluir.setText("Excluir");
+        btn_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_ConsultaPJLayout = new javax.swing.GroupLayout(pnl_ConsultaPJ);
         pnl_ConsultaPJ.setLayout(pnl_ConsultaPJLayout);
         pnl_ConsultaPJLayout.setHorizontalGroup(
@@ -141,6 +157,12 @@ public class ConsultaPJ extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_HomePage, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(pnl_ConsultaPJLayout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(btn_Atualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Excluir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_ConsultaPJLayout.setVerticalGroup(
             pnl_ConsultaPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,8 +174,12 @@ public class ConsultaPJ extends javax.swing.JFrame {
                     .addComponent(btn_BuscarNomeJuridico)
                     .addComponent(btn_HomePage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scp_ConsultaPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scp_ConsultaPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_ConsultaPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Atualizar)
+                    .addComponent(btn_Excluir))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pnl_TitleClientePageBackground.setBackground(new java.awt.Color(0, 99, 149));
@@ -217,6 +243,24 @@ public class ConsultaPJ extends javax.swing.JFrame {
         ConsultaPJ.this.dispose();
     }//GEN-LAST:event_btn_HomePageActionPerformed
 
+    private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed
+        // TODO add your handling code here:
+        if (tbl_ConsultaPJ.getSelectedRow() != -1) {
+            AtualizaPJ atualiza = new AtualizaPJ(Integer.parseInt((String) tbl_ConsultaPJ.getValueAt(tbl_ConsultaPJ.getSelectedRow(), 0)));
+            atualiza.setVisible(true);
+            ConsultaPJ.this.dispose();
+        }
+    }//GEN-LAST:event_btn_AtualizarActionPerformed
+
+    private void btn_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirActionPerformed
+        // TODO add your handling code here:
+        if (tbl_ConsultaPJ.getSelectedRow() != -1) {
+
+            PessoaJuridicaController.excluir(Integer.parseInt((String) tbl_ConsultaPJ.getValueAt(tbl_ConsultaPJ.getSelectedRow(), 0)));
+            LoadTable();
+        }
+    }//GEN-LAST:event_btn_ExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,7 +312,9 @@ public class ConsultaPJ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Atualizar;
     private javax.swing.JButton btn_BuscarNomeJuridico;
+    private javax.swing.JButton btn_Excluir;
     private javax.swing.JButton btn_HomePage;
     private javax.swing.JLabel lbl_NomeJuridico;
     private javax.swing.JLabel lbl_TitleLoginPage;

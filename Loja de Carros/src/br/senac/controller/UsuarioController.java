@@ -21,7 +21,7 @@ public class UsuarioController {
         usuario.atualizar(u);
     }
 
-    public void excluir(int id) {
+    public static void excluir(int id) {
         UsuarioDAO usuario = new UsuarioDAO();
         usuario.deletar(id);
     }
@@ -36,7 +36,7 @@ public class UsuarioController {
         return usuario.consultar();
     }
 
-    public List<Usuario> consultarPorId(int id) {
+    public static List<Usuario> consultarPorId(int id) {
         UsuarioDAO usuario = new UsuarioDAO();
         return usuario.consultarPorId(id);
     }

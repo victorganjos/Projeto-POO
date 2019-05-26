@@ -5,9 +5,8 @@
  */
 package br.senac.view;
 
-import br.senac.controller.PessoaFisicaController;
-import br.senac.model.PessoaFisica;
-import java.sql.Date;
+import br.senac.controller.PessoaJuridicaController;
+import br.senac.model.PessoaJuridica;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,11 +14,11 @@ import javax.swing.JOptionPane;
  *
  * @author victor.ganjos
  */
-public class AtualizaPF extends javax.swing.JFrame {
+public class AtualizaPJ extends javax.swing.JFrame {
 
     private int id;
-
-    public int getId() {
+    
+     public int getId() {
         return id;
     }
 
@@ -27,11 +26,11 @@ public class AtualizaPF extends javax.swing.JFrame {
         this.id = id;
     }
 
-    public AtualizaPF() {
+    public AtualizaPJ() {
         initComponents();
     }
-
-    public AtualizaPF(int id) {
+    
+    public AtualizaPJ(int id) {
         initComponents();
         this.id = id;
         load();
@@ -47,31 +46,29 @@ public class AtualizaPF extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_TitlePageBackground = new javax.swing.JPanel();
-        pnl_ClienteBackground = new javax.swing.JPanel();
+        pnl_CadastroBackground = new javax.swing.JPanel();
         lbl_TextoInfo = new javax.swing.JLabel();
+        lbl_NomeFant = new javax.swing.JLabel();
+        txt_NomeFant = new javax.swing.JTextField();
+        lxl_CNPJ = new javax.swing.JLabel();
+        txt_CNPJ = new javax.swing.JTextField();
         lbl_Nome = new javax.swing.JLabel();
-        txt_NomeAtt = new javax.swing.JTextField();
-        lxl_CPF = new javax.swing.JLabel();
-        txt_CPFAtt = new javax.swing.JTextField();
-        lbl_RG = new javax.swing.JLabel();
-        txt_RGAtt = new javax.swing.JTextField();
-        lbl_DataNasc = new javax.swing.JLabel();
-        txt_DataNascAtt = new javax.swing.JTextField();
+        txt_Nome = new javax.swing.JTextField();
         lbl_Endereco = new javax.swing.JLabel();
-        txt_EnderecoAtt = new javax.swing.JTextField();
+        txt_Endereco = new javax.swing.JTextField();
         lbl_Telefone = new javax.swing.JLabel();
-        txt_TelefoneAtt = new javax.swing.JTextField();
+        txt_Telefone = new javax.swing.JTextField();
         lbl_Numero = new javax.swing.JLabel();
-        txt_NumeroEndAtt = new javax.swing.JTextField();
+        txt_NumeroEnd = new javax.swing.JTextField();
         lbl_UF = new javax.swing.JLabel();
         lbl_Cidade = new javax.swing.JLabel();
-        txt_CidadeAtt = new javax.swing.JTextField();
+        txt_Cidade = new javax.swing.JTextField();
         cbo_UF = new javax.swing.JComboBox<>();
         lbl_Bairro = new javax.swing.JLabel();
-        txt_BairroAtt = new javax.swing.JTextField();
+        txt_Bairro = new javax.swing.JTextField();
         lbl_CEP = new javax.swing.JLabel();
-        txt_CEPAtt = new javax.swing.JTextField();
-        btn_Atualizar = new javax.swing.JButton();
+        txt_CEP = new javax.swing.JTextField();
+        btn_Salvar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
         btn_Limpar = new javax.swing.JButton();
         pnl_TitleClientePageBackground = new javax.swing.JPanel();
@@ -81,37 +78,22 @@ public class AtualizaPF extends javax.swing.JFrame {
 
         pnl_TitlePageBackground.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnl_ClienteBackground.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_ClienteBackground.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
+        pnl_CadastroBackground.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_CadastroBackground.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
 
         lbl_TextoInfo.setText("Preencha os campos abaixo:");
 
-        lbl_Nome.setText("Nome Completo*");
+        lbl_NomeFant.setText("Nome Fantasia*");
 
-        txt_NomeAtt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NomeAttActionPerformed(evt);
-            }
-        });
+        lxl_CNPJ.setText("CNPJ*");
 
-        lxl_CPF.setText("CPF*");
-
-        lbl_RG.setText("RG*");
-
-        lbl_DataNasc.setText("Data de Nascimento*");
-
-        txt_DataNascAtt.setText("EX: 1990-01-20");
-        txt_DataNascAtt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_DataNascAttActionPerformed(evt);
-            }
-        });
+        lbl_Nome.setText("Nome*");
 
         lbl_Endereco.setText("Endereço*");
 
         lbl_Telefone.setText("Telefone*");
 
-        lbl_Numero.setText("Nº*");
+        lbl_Numero.setText("Nº");
 
         lbl_UF.setText("Estado-(UF)*");
 
@@ -123,115 +105,107 @@ public class AtualizaPF extends javax.swing.JFrame {
 
         lbl_CEP.setText("CEP*");
 
-        javax.swing.GroupLayout pnl_ClienteBackgroundLayout = new javax.swing.GroupLayout(pnl_ClienteBackground);
-        pnl_ClienteBackground.setLayout(pnl_ClienteBackgroundLayout);
-        pnl_ClienteBackgroundLayout.setHorizontalGroup(
-            pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_CadastroBackgroundLayout = new javax.swing.GroupLayout(pnl_CadastroBackground);
+        pnl_CadastroBackground.setLayout(pnl_CadastroBackgroundLayout);
+        pnl_CadastroBackgroundLayout.setHorizontalGroup(
+            pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                         .addComponent(lbl_Endereco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_EnderecoAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_Numero)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_NumeroEndAtt))
-                    .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+                        .addComponent(txt_NumeroEnd))
+                    .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                         .addComponent(lbl_UF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbo_UF, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_Cidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_CidadeAtt))
-                    .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txt_Cidade))
+                    .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lbl_TextoInfo)
-                        .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+                        .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
+                            .addComponent(lbl_NomeFant)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_NomeFant))
+                        .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                             .addComponent(lbl_Nome)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
+                            .addComponent(lxl_CNPJ)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_NomeAtt))
-                        .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
-                            .addComponent(lxl_CPF)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_CPFAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl_RG)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_RGAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
-                            .addComponent(lbl_DataNasc)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_DataNascAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_CNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(lbl_Telefone)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_TelefoneAtt)))
-                    .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+                            .addComponent(txt_Telefone)))
+                    .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                         .addComponent(lbl_Bairro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_BairroAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_CEP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_CEPAtt)))
+                        .addComponent(txt_CEP)))
                 .addContainerGap())
         );
-        pnl_ClienteBackgroundLayout.setVerticalGroup(
-            pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
+        pnl_CadastroBackgroundLayout.setVerticalGroup(
+            pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(lbl_TextoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_NomeAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_NomeFant, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_NomeFant))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_Nome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_CPFAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lxl_CPF))
-                    .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_RGAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbl_RG)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ClienteBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_DataNascAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_DataNasc))
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_CadastroBackgroundLayout.createSequentialGroup()
+                        .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_CNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lxl_CNPJ))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_EnderecoAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_Endereco)
-                            .addComponent(txt_NumeroEndAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_NumeroEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_Numero)))
-                    .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_TelefoneAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbl_Telefone)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_UF)
-                    .addComponent(txt_CidadeAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_Cidade)
                     .addComponent(cbo_UF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_ClienteBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_BairroAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_CadastroBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_Bairro)
-                    .addComponent(txt_CEPAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_CEP, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_CEP))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        btn_Atualizar.setBackground(new java.awt.Color(71, 140, 104));
-        btn_Atualizar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btn_Atualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Atualizar.setText("Atualizar");
-        btn_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Salvar.setBackground(new java.awt.Color(71, 140, 104));
+        btn_Salvar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btn_Salvar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Salvar.setText("Atualizar");
+        btn_Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AtualizarActionPerformed(evt);
+                btn_SalvarActionPerformed(evt);
             }
         });
 
@@ -263,24 +237,24 @@ public class AtualizaPF extends javax.swing.JFrame {
                 .addGroup(pnl_TitlePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_TitlePageBackgroundLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_Atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl_TitlePageBackgroundLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(pnl_ClienteBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnl_CadastroBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_TitlePageBackgroundLayout.setVerticalGroup(
             pnl_TitlePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_TitlePageBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnl_ClienteBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_CadastroBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_TitlePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Atualizar)
+                    .addComponent(btn_Salvar)
                     .addComponent(btn_Limpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -330,50 +304,51 @@ public class AtualizaPF extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     private void load() {
-        List<PessoaFisica> lista = PessoaFisicaController.consultarPorId(id);
+        List<PessoaJuridica> lista = PessoaJuridicaController.consultarPorId(id);
 
-        for (PessoaFisica li : lista) {
-            txt_NomeAtt.setText(li.getNome());
-            txt_CPFAtt.setText(String.valueOf(li.getCpf()));
-            txt_RGAtt.setText(String.valueOf(li.getRg()));
-            txt_TelefoneAtt.setText(li.getTelefone());
-            txt_EnderecoAtt.setText(li.getEndereco());
-            txt_NumeroEndAtt.setText(String.valueOf(li.getNumeroResidencia()));
-            txt_CidadeAtt.setText(li.getCidade());
-            txt_BairroAtt.setText(li.getBairro());
-            txt_CEPAtt.setText(String.valueOf(li.getCep()));
+        for (PessoaJuridica li : lista) {
+            
+            txt_NomeFant.setText(li.getNomeFantasia());
+            txt_Nome.setText(li.getNome());
+            txt_CNPJ.setText(String.valueOf(li.getCnpj()));
+            txt_Telefone.setText(li.getTelefone());
+            txt_Endereco.setText(li.getEndereco());
+            txt_NumeroEnd.setText(String.valueOf(li.getNumeroResidencia()));
+            txt_Cidade.setText(li.getCidade());
+            txt_Bairro.setText(li.getBairro());
+            txt_CEP.setText(String.valueOf(li.getCep()));
 
         }
     }
-    private void btn_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtualizarActionPerformed
-        PessoaFisicaController control = new PessoaFisicaController();
-        String nome = txt_NomeAtt.getText();
-        String cpf = txt_CPFAtt.getText();
-        String rg = txt_RGAtt.getText();
-        String dataNasc = txt_DataNascAtt.getText();
-        String telefone = txt_TelefoneAtt.getText();
-        String endereco = txt_EnderecoAtt.getText();
-        String numero = txt_NumeroEndAtt.getText();
+    private void btn_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalvarActionPerformed
+        PessoaJuridicaController control = new PessoaJuridicaController();
+        String nome = txt_Nome.getText();
+        String nomeFant = txt_NomeFant.getText();
+        String cnpj = txt_CNPJ.getText();
+        String telefone = txt_Telefone.getText();
+        String endereco = txt_Endereco.getText();
+        String numero = txt_NumeroEnd.getText();
         String uf = cbo_UF.getSelectedItem().toString();
-        String cidade = txt_CidadeAtt.getText();
-        String bairro = txt_BairroAtt.getText();
-        String cep = txt_CEPAtt.getText();
+        String cidade = txt_Cidade.getText();
+        String bairro = txt_Bairro.getText();
+        String cep = txt_CEP.getText();
 
-        if (nome.equals("") || cpf.equals("") || rg.equals("") || dataNasc.equals("")
+        if (nome.equals("") || nomeFant.equals("") || cnpj.equals("")
                 || telefone.equals("") || endereco.equals("") || numero.equals("")
                 || uf.equals("") || cidade.equals("") || cep.equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
 
         } else {
-            control.atualizar(Long.parseLong(cpf), Long.parseLong(rg), Date.valueOf(dataNasc), id, Integer.parseInt(numero), nome, endereco, bairro, cidade, uf, telefone, Long.parseLong(cep));
+            control.atualizar(Long.parseLong(cnpj), nomeFant, id, Integer.parseInt(numero), nome, endereco, bairro, cidade, uf, telefone, Long.parseLong(cep));
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
             HomePage home = new HomePage();
             home.setVisible(true);
-            AtualizaPF.this.dispose();
+            AtualizaPJ.this.dispose();
         }
 
-    }//GEN-LAST:event_btn_AtualizarActionPerformed
+    }//GEN-LAST:event_btn_SalvarActionPerformed
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         int logout = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Cancelar?");
@@ -382,30 +357,21 @@ public class AtualizaPF extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Operação Cancelada!");
             HomePage home = new HomePage();
             home.setVisible(true);
-            AtualizaPF.this.dispose();
+            AtualizaPJ.this.dispose();
         }
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
     private void btn_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LimparActionPerformed
-        txt_NomeAtt.setText("");
-        txt_CPFAtt.setText("");
-        txt_RGAtt.setText("");
-        txt_DataNascAtt.setText("");
-        txt_TelefoneAtt.setText("");
-        txt_EnderecoAtt.setText("");
-        txt_NumeroEndAtt.setText("");
-        txt_CidadeAtt.setText("");
-        txt_BairroAtt.setText("");
-        txt_CEPAtt.setText("");
+        txt_NomeFant.setText("");
+        txt_Nome.setText("");
+        txt_CNPJ.setText("");
+        txt_Telefone.setText("");
+        txt_Endereco.setText("");
+        txt_NumeroEnd.setText("");
+        txt_Cidade.setText("");
+        txt_Bairro.setText("");
+        txt_CEP.setText("");
     }//GEN-LAST:event_btn_LimparActionPerformed
-
-    private void txt_DataNascAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DataNascAttActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_DataNascAttActionPerformed
-
-    private void txt_NomeAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NomeAttActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NomeAttActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,14 +390,22 @@ public class AtualizaPF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtualizaPF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaPJ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtualizaPF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaPJ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtualizaPF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaPJ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtualizaPF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaPJ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -444,41 +418,39 @@ public class AtualizaPF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AtualizaPF().setVisible(true);
+                new AtualizaPJ().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Atualizar;
     private javax.swing.JButton btn_Cancelar;
     private javax.swing.JButton btn_Limpar;
+    private javax.swing.JButton btn_Salvar;
     private javax.swing.JComboBox<String> cbo_UF;
     private javax.swing.JLabel lbl_Bairro;
     private javax.swing.JLabel lbl_CEP;
     private javax.swing.JLabel lbl_Cidade;
-    private javax.swing.JLabel lbl_DataNasc;
     private javax.swing.JLabel lbl_Endereco;
     private javax.swing.JLabel lbl_Nome;
+    private javax.swing.JLabel lbl_NomeFant;
     private javax.swing.JLabel lbl_Numero;
-    private javax.swing.JLabel lbl_RG;
     private javax.swing.JLabel lbl_Telefone;
     private javax.swing.JLabel lbl_TextoInfo;
     private javax.swing.JLabel lbl_TitleLoginPage;
     private javax.swing.JLabel lbl_UF;
-    private javax.swing.JLabel lxl_CPF;
-    private javax.swing.JPanel pnl_ClienteBackground;
+    private javax.swing.JLabel lxl_CNPJ;
+    private javax.swing.JPanel pnl_CadastroBackground;
     private javax.swing.JPanel pnl_TitleClientePageBackground;
     private javax.swing.JPanel pnl_TitlePageBackground;
-    private javax.swing.JTextField txt_BairroAtt;
-    private javax.swing.JTextField txt_CEPAtt;
-    private javax.swing.JTextField txt_CPFAtt;
-    private javax.swing.JTextField txt_CidadeAtt;
-    private javax.swing.JTextField txt_DataNascAtt;
-    private javax.swing.JTextField txt_EnderecoAtt;
-    private javax.swing.JTextField txt_NomeAtt;
-    private javax.swing.JTextField txt_NumeroEndAtt;
-    private javax.swing.JTextField txt_RGAtt;
-    private javax.swing.JTextField txt_TelefoneAtt;
+    private javax.swing.JTextField txt_Bairro;
+    private javax.swing.JTextField txt_CEP;
+    private javax.swing.JTextField txt_CNPJ;
+    private javax.swing.JTextField txt_Cidade;
+    private javax.swing.JTextField txt_Endereco;
+    private javax.swing.JTextField txt_Nome;
+    private javax.swing.JTextField txt_NomeFant;
+    private javax.swing.JTextField txt_NumeroEnd;
+    private javax.swing.JTextField txt_Telefone;
     // End of variables declaration//GEN-END:variables
 }
