@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author victor.ganjos
  */
 public class HomePage extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form LoginPage
      */
@@ -34,15 +34,15 @@ public class HomePage extends javax.swing.JFrame {
         pnl_HomePageBackground = new javax.swing.JPanel();
         pnl_HomeBackground = new javax.swing.JPanel();
         lbl_TitleHome = new javax.swing.JLabel();
-        btn_Venda = new javax.swing.JButton();
         btn_CadastroCliente = new javax.swing.JButton();
-        btn_CadastroProduto = new javax.swing.JButton();
+        btn_Venda = new javax.swing.JButton();
         btn_CadastroUsuario = new javax.swing.JButton();
-        btn_Estoque = new javax.swing.JButton();
+        btn_CadastroProdutos = new javax.swing.JButton();
         btn_ConsultaCliente = new javax.swing.JButton();
-        btn_ConsultaProduto = new javax.swing.JButton();
+        btn_Estoque = new javax.swing.JButton();
         btn_ConsultaUsuario = new javax.swing.JButton();
-        btn_Deslogar = new javax.swing.JButton();
+        btn_ConsultaProduto = new javax.swing.JButton();
+        btn_Logout = new javax.swing.JButton();
         pnl_TitleLoginPageBackground = new javax.swing.JPanel();
         lbl_TitleLoginPage = new javax.swing.JLabel();
 
@@ -56,85 +56,31 @@ public class HomePage extends javax.swing.JFrame {
         lbl_TitleHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_TitleHome.setText("Menu");
 
-        btn_Venda.setBackground(new java.awt.Color(71, 140, 104));
-        btn_Venda.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_Venda.setForeground(new java.awt.Color(0, 51, 51));
-        btn_Venda.setText("Venda");
-        btn_Venda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_VendaActionPerformed(evt);
-            }
-        });
-
-        btn_CadastroCliente.setBackground(new java.awt.Color(71, 140, 104));
-        btn_CadastroCliente.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_CadastroCliente.setForeground(new java.awt.Color(0, 51, 51));
-        btn_CadastroCliente.setText("Cadastrar Cliente");
+        btn_CadastroCliente.setText("Cadastro de Clientes");
         btn_CadastroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CadastroClienteActionPerformed(evt);
             }
         });
 
-        btn_CadastroProduto.setBackground(new java.awt.Color(71, 140, 104));
-        btn_CadastroProduto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_CadastroProduto.setForeground(new java.awt.Color(0, 51, 51));
-        btn_CadastroProduto.setText("Cadastrar Produto");
-        btn_CadastroProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CadastroProdutoActionPerformed(evt);
-            }
-        });
+        btn_Venda.setText("Venda");
 
-        btn_CadastroUsuario.setBackground(new java.awt.Color(71, 140, 104));
-        btn_CadastroUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_CadastroUsuario.setForeground(new java.awt.Color(0, 51, 51));
-        btn_CadastroUsuario.setText("Cadastrar Usuário");
+        btn_CadastroUsuario.setText("Cadastro de Usuários");
         btn_CadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CadastroUsuarioActionPerformed(evt);
             }
         });
 
-        btn_Estoque.setBackground(new java.awt.Color(71, 140, 104));
-        btn_Estoque.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_Estoque.setForeground(new java.awt.Color(0, 51, 51));
-        btn_Estoque.setText("Estoque");
-        btn_Estoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EstoqueActionPerformed(evt);
-            }
-        });
+        btn_CadastroProdutos.setText("Cadastro de Produtos");
 
-        btn_ConsultaCliente.setBackground(new java.awt.Color(71, 140, 104));
-        btn_ConsultaCliente.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_ConsultaCliente.setForeground(new java.awt.Color(0, 51, 51));
         btn_ConsultaCliente.setText("Consultar Cliente");
-        btn_ConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ConsultaClienteActionPerformed(evt);
-            }
-        });
 
-        btn_ConsultaProduto.setBackground(new java.awt.Color(71, 140, 104));
-        btn_ConsultaProduto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_ConsultaProduto.setForeground(new java.awt.Color(0, 51, 51));
-        btn_ConsultaProduto.setText("Consultar Produto");
-        btn_ConsultaProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ConsultaProdutoActionPerformed(evt);
-            }
-        });
+        btn_Estoque.setText("Estoque");
 
-        btn_ConsultaUsuario.setBackground(new java.awt.Color(71, 140, 104));
-        btn_ConsultaUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_ConsultaUsuario.setForeground(new java.awt.Color(0, 51, 51));
         btn_ConsultaUsuario.setText("Consultar Usuário");
-        btn_ConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ConsultaUsuarioActionPerformed(evt);
-            }
-        });
+
+        btn_ConsultaProduto.setText("Consultar Produto");
 
         javax.swing.GroupLayout pnl_HomeBackgroundLayout = new javax.swing.GroupLayout(pnl_HomeBackground);
         pnl_HomeBackground.setLayout(pnl_HomeBackgroundLayout);
@@ -143,15 +89,15 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(pnl_HomeBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_HomeBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_CadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_TitleHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_CadastroCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_CadastroProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_CadastroUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(btn_CadastroUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(btn_CadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(btn_ConsultaCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(btn_Estoque, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_ConsultaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_ConsultaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_ConsultaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+                    .addComponent(btn_ConsultaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(btn_ConsultaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnl_HomeBackgroundLayout.setVerticalGroup(
@@ -163,27 +109,24 @@ public class HomePage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_CadastroCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_CadastroProduto)
+                .addComponent(btn_CadastroProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_CadastroUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(btn_Estoque)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btn_ConsultaCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_ConsultaProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_ConsultaUsuario)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        btn_Deslogar.setBackground(new java.awt.Color(71, 140, 104));
-        btn_Deslogar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btn_Deslogar.setForeground(new java.awt.Color(0, 51, 51));
-        btn_Deslogar.setText("Logout");
-        btn_Deslogar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Logout.setText("Logout");
+        btn_Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeslogarActionPerformed(evt);
+                btn_LogoutActionPerformed(evt);
             }
         });
 
@@ -191,24 +134,23 @@ public class HomePage extends javax.swing.JFrame {
         pnl_HomePageBackground.setLayout(pnl_HomePageBackgroundLayout);
         pnl_HomePageBackgroundLayout.setHorizontalGroup(
             pnl_HomePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_HomePageBackgroundLayout.createSequentialGroup()
+            .addGroup(pnl_HomePageBackgroundLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(pnl_HomeBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
-                .addComponent(btn_Deslogar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addComponent(btn_Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnl_HomePageBackgroundLayout.setVerticalGroup(
             pnl_HomePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_HomePageBackgroundLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(pnl_HomePageBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_HomeBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnl_HomePageBackgroundLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btn_Deslogar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(pnl_HomeBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnl_HomePageBackgroundLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(btn_Logout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnl_TitleLoginPageBackground.setBackground(new java.awt.Color(0, 99, 149));
@@ -256,48 +198,44 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_VendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_VendaActionPerformed
-
-    private void btn_CadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CadastroClienteActionPerformed
-
-    private void btn_DeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeslogarActionPerformed
-    
-    int logout = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Sair?");
-    if(logout !=1){
-    JOptionPane.showMessageDialog(rootPane, "Você Saiu!");
-    LoginPage loginPage = new LoginPage();
+    private void btn_LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LogoutActionPerformed
+        int logout = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Sair?");
+        System.out.println(logout);
+        if (logout == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Você Saiu!");
+            LoginPage loginPage = new LoginPage();
             loginPage.setVisible(true);
             HomePage.this.dispose();
-    }    
-    }//GEN-LAST:event_btn_DeslogarActionPerformed
-
-    private void btn_CadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CadastroProdutoActionPerformed
+        }
+    }//GEN-LAST:event_btn_LogoutActionPerformed
 
     private void btn_CadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroUsuarioActionPerformed
-        // TODO add your handling code here:
+        CadastroUsuario cadastro = new CadastroUsuario();
+        cadastro.setVisible(true);
+        HomePage.this.dispose();
     }//GEN-LAST:event_btn_CadastroUsuarioActionPerformed
 
-    private void btn_EstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_EstoqueActionPerformed
+    private void btn_CadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastroClienteActionPerformed
+        String value = JOptionPane.showInputDialog(null, "Digite 1 - para cliente pessoa física \nDigite 2 - para pessoa jurídica");
+        switch (value) {
+            case "1":
+                CadastroPF cadastroPF = new CadastroPF();
+                cadastroPF.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            case "2":
+                CadastroPJ cadastroPJ = new CadastroPJ();
+                cadastroPJ.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                break;
 
-    private void btn_ConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ConsultaClienteActionPerformed
+        }
 
-    private void btn_ConsultaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ConsultaProdutoActionPerformed
 
-    private void btn_ConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultaUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ConsultaUsuarioActionPerformed
+    }//GEN-LAST:event_btn_CadastroClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,13 +275,13 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CadastroCliente;
-    private javax.swing.JButton btn_CadastroProduto;
+    private javax.swing.JButton btn_CadastroProdutos;
     private javax.swing.JButton btn_CadastroUsuario;
     private javax.swing.JButton btn_ConsultaCliente;
     private javax.swing.JButton btn_ConsultaProduto;
     private javax.swing.JButton btn_ConsultaUsuario;
-    private javax.swing.JButton btn_Deslogar;
     private javax.swing.JButton btn_Estoque;
+    private javax.swing.JButton btn_Logout;
     private javax.swing.JButton btn_Venda;
     private javax.swing.JLabel lbl_TitleHome;
     private javax.swing.JLabel lbl_TitleLoginPage;

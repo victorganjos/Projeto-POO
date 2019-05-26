@@ -1,4 +1,4 @@
-package br.senac.model;
+    package br.senac.model;
 /**
  * @author victor.ganjos
  */
