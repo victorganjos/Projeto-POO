@@ -20,6 +20,10 @@ public class ProdutoController {
         ProdutoDAO produto = new ProdutoDAO();
         produto.atualizar(p);
     }
+    public static void desativar(int id) {
+        ProdutoDAO produto = new ProdutoDAO();
+        produto.desativar(id);
+    }
 
     public static void excluir(int id) {
         ProdutoDAO produto = new ProdutoDAO();

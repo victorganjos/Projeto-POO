@@ -21,7 +21,7 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO PRODUTO(modelo,marca,ano,cor,placa,valor_compra) VALUE (?,?,?,?,?,?);");
+            stmt = con.prepareStatement("INSERT INTO PRODUTO(modelo,marca,ano,cor,placa,valor_compra,situacao) VALUE (?,?,?,?,?,?,?);");
 
             stmt.setString(1, p.getModelo());
             stmt.setString(2, p.getMarca());
@@ -29,6 +29,7 @@ public class ProdutoDAO {
             stmt.setString(4, p.getCor());
             stmt.setString(5, p.getPlaca());
             stmt.setDouble(6, p.getValorCompra());
+            stmt.setString(7, p.getSituacao());
 
             stmt.executeUpdate();
             System.out.println("Salvar com sucesso!");
@@ -164,6 +165,23 @@ public class ProdutoDAO {
             ConnectionFactory.fecharConexao(con, stmt);
         }
     }
+    public static void desativar(int id) {
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE PRODUTO SET situacao = ? WHERE id = ?");
+
+            stmt.setString(1, "d"); //produto desativado
+            stmt.setInt(2, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt);
+        }
+    }
 
     public void deletar(int id) {
         Connection con = ConnectionFactory.obterConexao();
@@ -191,7 +209,7 @@ public class ProdutoDAO {
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE placa LIKE ?;");
+            stmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE placa LIKE ? AND situacao = 'a';");
             stmt.setString(1,"" + placa + "");
             rs = stmt.executeQuery();
             

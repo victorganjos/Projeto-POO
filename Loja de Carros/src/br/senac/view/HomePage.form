@@ -97,7 +97,7 @@
                           <Component id="btn_CadastroUsuario" alignment="1" pref="172" max="32767" attributes="0"/>
                           <Component id="btn_CadastroProdutos" alignment="0" pref="172" max="32767" attributes="0"/>
                           <Component id="btn_ConsultaCliente" alignment="1" pref="172" max="32767" attributes="0"/>
-                          <Component id="btn_Estoque" alignment="0" pref="172" max="32767" attributes="0"/>
+                          <Component id="btn_Relatorio" alignment="0" pref="172" max="32767" attributes="0"/>
                           <Component id="btn_ConsultaUsuario" alignment="1" pref="172" max="32767" attributes="0"/>
                           <Component id="btn_ConsultaProduto" alignment="0" pref="172" max="32767" attributes="0"/>
                       </Group>
@@ -118,7 +118,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_CadastroUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Component id="btn_Estoque" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_Relatorio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_ConsultaCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -180,10 +180,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ConsultaClienteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Estoque">
+            <Component class="javax.swing.JButton" name="btn_Relatorio">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estoque"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_RelatorioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_ConsultaUsuario">
               <Properties>

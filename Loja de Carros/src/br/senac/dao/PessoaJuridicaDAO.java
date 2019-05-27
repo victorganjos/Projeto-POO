@@ -206,4 +206,53 @@ public class PessoaJuridicaDAO {
             ConnectionFactory.fecharConexao(con, stmt);
         }
     }
+    
+    public static String consultaClienteVenda(long cnpj) {
+
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean result = false;
+        String aux = null;
+
+        try {
+            stmt = con.prepareStatement("SELECT NOME FROM CLIENTE WHERE cnpj LIKE ? AND TIPO = 'pj';");
+            stmt.setString(1, "" + cnpj + "");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                aux = rs.getString("nome");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return aux;
+    }
+    
+    public int consultarPorCNPJ(long cnpj) {
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int  pf = -1;
+        try {
+            stmt = con.prepareStatement("SELECT id FROM CLIENTE WHERE cnpj LIKE ? AND TIPO = 'pj';");
+            stmt.setString(1, "%" + cnpj + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                pf=(rs.getInt("id"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return pf ;
+    }
 }

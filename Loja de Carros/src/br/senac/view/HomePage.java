@@ -39,7 +39,7 @@ public class HomePage extends javax.swing.JFrame {
         btn_CadastroUsuario = new javax.swing.JButton();
         btn_CadastroProdutos = new javax.swing.JButton();
         btn_ConsultaCliente = new javax.swing.JButton();
-        btn_Estoque = new javax.swing.JButton();
+        btn_Relatorio = new javax.swing.JButton();
         btn_ConsultaUsuario = new javax.swing.JButton();
         btn_ConsultaProduto = new javax.swing.JButton();
         btn_Logout = new javax.swing.JButton();
@@ -91,7 +91,12 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        btn_Estoque.setText("Estoque");
+        btn_Relatorio.setText("Relatório");
+        btn_Relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RelatorioActionPerformed(evt);
+            }
+        });
 
         btn_ConsultaUsuario.setText("Consultar Usuário");
         btn_ConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +125,7 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(btn_CadastroUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(btn_CadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(btn_ConsultaCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(btn_Estoque, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(btn_Relatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(btn_ConsultaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(btn_ConsultaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
                 .addContainerGap())
@@ -138,7 +143,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_CadastroUsuario)
                 .addGap(7, 7, 7)
-                .addComponent(btn_Estoque)
+                .addComponent(btn_Relatorio)
                 .addGap(18, 18, 18)
                 .addComponent(btn_ConsultaCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,10 +310,32 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btn_VendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VendaActionPerformed
         // TODO add your handling code here:
-        Venda venda = new Venda();
-        venda.setVisible(true);
-        HomePage.this.dispose();
+
+        String value = JOptionPane.showInputDialog(null, "Digite 1 - para venda pessoa física \nDigite 2 - para venda pessoa jurídica");
+        switch (value) {
+            case "1":
+                Venda venda = new Venda();
+                venda.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            case "2":
+                VendaJuridica vendaJuridica = new VendaJuridica();
+                vendaJuridica.setVisible(true);
+                HomePage.this.dispose();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                break;
+
+        }
     }//GEN-LAST:event_btn_VendaActionPerformed
+
+    private void btn_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RelatorioActionPerformed
+        // TODO add your handling code here:
+        RelatorioView relatorio = new RelatorioView();
+        relatorio.setVisible(true);
+        HomePage.this.dispose();
+    }//GEN-LAST:event_btn_RelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,8 +380,8 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btn_ConsultaCliente;
     private javax.swing.JButton btn_ConsultaProduto;
     private javax.swing.JButton btn_ConsultaUsuario;
-    private javax.swing.JButton btn_Estoque;
     private javax.swing.JButton btn_Logout;
+    private javax.swing.JButton btn_Relatorio;
     private javax.swing.JButton btn_Venda;
     private javax.swing.JLabel lbl_TitleHome;
     private javax.swing.JLabel lbl_TitleLoginPage;

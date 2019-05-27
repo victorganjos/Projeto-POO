@@ -7,6 +7,7 @@ public class Produto {
     private int id;
     private String modelo, marca, ano, cor, placa;
     private double valorCompra;
+    private String situacao = "a";
 
     public Produto(int id, String modelo, String marca, String ano, String cor, String placa, double valorCompra) {
         this.id = id;
@@ -84,6 +85,14 @@ public class Produto {
 
     public void setValorCompra(double valorCompra) {
         this.valorCompra = valorCompra;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
     
     

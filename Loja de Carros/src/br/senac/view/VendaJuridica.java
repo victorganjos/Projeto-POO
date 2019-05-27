@@ -7,7 +7,7 @@ package br.senac.view;
 
 import br.senac.controller.ItemVendaController;
 import br.senac.controller.PedidoController;
-import br.senac.controller.PessoaFisicaController;
+import br.senac.controller.PessoaJuridicaController;
 import br.senac.controller.ProdutoController;
 import br.senac.controller.VendaController;
 import br.senac.dao.ProdutoDAO;
@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author laay.dias
  */
-public class Venda extends javax.swing.JFrame {
+public class VendaJuridica extends javax.swing.JFrame {
 
-    public Venda() {
+    public VendaJuridica() {
         initComponents();
     }
 
@@ -82,7 +82,7 @@ public class Venda extends javax.swing.JFrame {
 
         lbl_valorTotal.setText("Valor total");
 
-        lbl_ClientePfPj.setText("CPF");
+        lbl_ClientePfPj.setText("CNPJ");
 
         lbl_Produto.setText("Placa");
 
@@ -432,7 +432,6 @@ public class Venda extends javax.swing.JFrame {
         tbl_ItemVenda.getColumnModel().getColumn(5).setPreferredWidth(50);
         tbl_ItemVenda.getColumnModel().getColumn(6).setPreferredWidth(50);
     }
-    
     public void LimparFormulario() {
         txt_Produto.setText("");
         txt_IdProduto.setText("");
@@ -446,22 +445,20 @@ public class Venda extends javax.swing.JFrame {
         VendaController vendaControl = new VendaController();
         ItemVendaController itemControl = new ItemVendaController();
         PedidoController pedidoControl = new PedidoController();
-        PessoaFisicaController clientepf = new PessoaFisicaController();
-        ProdutoController prod = new ProdutoController();
-        int pf = clientepf.consultarPorCPF(Long.parseLong(txt_ClientePf.getText()));
-        //int idProduto = itemControl.consultarPorId(Long.parseLong(txt_ClientePf.getText()));
-        vendaControl.salvar(pf, Double.parseDouble(lbl_valorTotalSet.getText()));
+        PessoaJuridicaController clientepf = new PessoaJuridicaController();
+        int pj = clientepf.consultarPorCPF(Long.parseLong(txt_ClientePf.getText()));
+        vendaControl.salvar(pj, Double.parseDouble(lbl_valorTotalSet.getText()));
+        ProdutoController prod2 = new ProdutoController();
         for (int i = 0; i < tbl_ItemVenda.getRowCount(); i++) {
             pedidoControl.salvar(vendaControl.consultarID(), Integer.parseInt(tbl_ItemVenda.getValueAt(i, 0).toString()), Double.parseDouble(tbl_ItemVenda.getValueAt(i, 6).toString()));
         }
         for (int j = 0; j < tbl_ItemVenda.getRowCount(); j++){
-            prod.desativar(Integer.parseInt(tbl_ItemVenda.getValueAt(j, 0).toString()));
+            prod2.desativar(Integer.parseInt(tbl_ItemVenda.getValueAt(j, 0).toString()));
         }
-
         JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
         HomePage home = new HomePage();
         home.setVisible(true);
-        Venda.this.dispose();
+        VendaJuridica.this.dispose();
 
 
     }//GEN-LAST:event_btn_SalvarActionPerformed
@@ -473,7 +470,7 @@ public class Venda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Operação Cancelada!");
             HomePage home = new HomePage();
             home.setVisible(true);
-            Venda.this.dispose();
+            VendaJuridica.this.dispose();
         }
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
@@ -493,10 +490,11 @@ public class Venda extends javax.swing.JFrame {
     private void btn_BuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarClienteActionPerformed
         // TODO add your handling code here:
 
-        String cliente = PessoaFisicaController.consultarPorCPFString(Long.parseLong(txt_ClientePf.getText()));
-        if (cliente != null || cliente.equals("")) {
-            lbl_NomeClienteVenda.setText(cliente);
-        } else {
+        String clienteJuridico = PessoaJuridicaController.consultarPorCNPJString(Long.parseLong(txt_ClientePf.getText()));
+        
+        if(clienteJuridico != null || clienteJuridico.equals("")){
+            lbl_NomeClienteVenda.setText(clienteJuridico);
+        }else {
             JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
             txt_ClientePf.setText("");
         }
@@ -577,20 +575,20 @@ public class Venda extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VendaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VendaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VendaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Venda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VendaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Venda().setVisible(true);
+                new VendaJuridica().setVisible(true);
             }
         });
     }

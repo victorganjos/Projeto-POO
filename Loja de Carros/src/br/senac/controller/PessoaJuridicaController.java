@@ -74,4 +74,14 @@ public class PessoaJuridicaController {
         return listaClientes;
 
     }
+    
+    public  static String consultarPorCNPJString(long cnpj){
+         PessoaJuridicaDAO cliente = new  PessoaJuridicaDAO();
+        return cliente.consultaClienteVenda(cnpj);
+    }
+    
+    public int consultarPorCPF(long cnpj){
+         PessoaJuridicaDAO cliente = new  PessoaJuridicaDAO();
+        return cliente.consultarPorCNPJ(cnpj);
+    }
 }
