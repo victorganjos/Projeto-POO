@@ -98,12 +98,5 @@ INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao)
 VALUES ('Golf','wolksvagem','2017','preto','BYH-5555',70.000,'a');
 INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
 VALUES ('CORSA','CHEVROLET','2019','ROSA','1',70000.00,'a');
-select * from itemvenda;
+select * from venda;
 
-SELECT v.data_venda,c.cpf,p.modelo,v.valor_total FROM VENDA AS v
-JOIN CLIENTE AS c ON v.fk_cliente = c.id
-JOIN PEDIDO AS pe ON pe.fk_venda = pe.id
-JOIN ITEMVENDA AS i ON pe.fk_itemvenda = i.id
-JOIN PRODUTO AS p ON i.fk_produto = p.id;
-
-Select p.id, p.marca, p.valor_compra from produto p inner join itemVenda pv on p.id = pv.fk_produto  where pv.id = 1;
