@@ -230,7 +230,7 @@ public class PessoaFisicaDAO {
         String aux = null;
         
         try {
-            stmt = con.prepareStatement("SELECT nome FROM cliente WHERE id LIKE ? AND TIPO = 'pf';");
+            stmt = con.prepareStatement("SELECT nome FROM cliente WHERE cpf LIKE ? AND TIPO = 'pf';");
             stmt.setString(1, ""+cpf+"");
             rs = stmt.executeQuery();
 

@@ -200,7 +200,7 @@ public class ProdutoDAO {
                 
                 produto.setId(rs.getInt("id"));
                 produto.setModelo(rs.getString("modelo"));
-                produto.setCor(rs.getString("marca"));
+                produto.setMarca(rs.getString("marca"));
                 produto.setAno(rs.getString("ano"));
                 produto.setCor(rs.getString("cor"));
                 produto.setPlaca(rs.getString("placa"));
