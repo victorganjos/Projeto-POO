@@ -409,30 +409,8 @@ public class VendaJuridica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void LoadTableItemVenda(String placa) {
 
-        ArrayList<String[]> lista = ProdutoController.consultaPorPlaca(txt_Produto.getText());
-        DefaultTableModel tmProduto = new DefaultTableModel();
-        tmProduto.addColumn("ID");
-        tmProduto.addColumn("Modelo");
-        tmProduto.addColumn("Marca");
-        tmProduto.addColumn("Ano");
-        tmProduto.addColumn("Cor");
-        tmProduto.addColumn("Placa");
-        tmProduto.addColumn("Valor");
-        tbl_ItemVenda.setModel(tmProduto);
-        for (String[] c : lista) {
-            tmProduto.addRow(c);
-        }
-        tbl_ItemVenda.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tbl_ItemVenda.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tbl_ItemVenda.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tbl_ItemVenda.getColumnModel().getColumn(3).setPreferredWidth(50);
-        tbl_ItemVenda.getColumnModel().getColumn(4).setPreferredWidth(50);
-        tbl_ItemVenda.getColumnModel().getColumn(5).setPreferredWidth(50);
-        tbl_ItemVenda.getColumnModel().getColumn(6).setPreferredWidth(50);
-    }
-    public void LimparFormulario() {
+    public void limparFormulario() {
         txt_Produto.setText("");
         txt_IdProduto.setText("");
         txt_Marca.setText("");
@@ -554,7 +532,7 @@ public class VendaJuridica extends javax.swing.JFrame {
         for (int i = 0; i < tbl_ItemVenda.getRowCount(); i++) {
             valorT = valorT + Double.parseDouble(tbl_ItemVenda.getValueAt(i, 6).toString());
         }
-        LimparFormulario();
+        limparFormulario();
         lbl_valorTotalSet.setText("" + valorT);
     }//GEN-LAST:event_btn_AdicionarActionPerformed
 

@@ -1,7 +1,6 @@
 package br.senac.controller;
 
 import br.senac.dao.PedidoDAO;
-import br.senac.model.ItemVenda;
 import br.senac.model.Pedido;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
  * @author victor.ganjos
  */
 public class PedidoController {
-
+    
     public void salvar(int id_venda,int id_prod, double valorUnit) {
         PedidoDAO pedidos = new PedidoDAO();
         pedidos.salvar(id_venda, id_prod,valorUnit);

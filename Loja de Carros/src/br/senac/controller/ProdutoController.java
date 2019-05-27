@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author victor.ganjos
  */
-public class ProdutoController {
+public class ProdutoController{
     public static void salvar(String modelo, String marca, String ano, String cor, String placa, double valorCompra) {
         Produto p = new Produto(modelo,marca,ano,cor, placa,valorCompra);
         ProdutoDAO produto = new ProdutoDAO();

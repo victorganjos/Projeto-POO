@@ -33,7 +33,7 @@ public class RelatorioView extends javax.swing.JFrame {
      * @param dataFim
      * @throws java.text.ParseException
      */
-    public void LoadTableRealatorios(String dataInicio, String dataFim) throws ParseException {
+    public void loadTableRealatorios(String dataInicio, String dataFim) throws ParseException {
         ArrayList<String[]> listaRelatorio = RelatorioController.read(dataInicio, dataFim);
 
         DefaultTableModel tbRelatorio = new DefaultTableModel();
@@ -273,7 +273,7 @@ public class RelatorioView extends javax.swing.JFrame {
         String dataFim = String.valueOf(txt_DataFim.getText());
 
         try {
-            LoadTableRealatorios(dataInicio, dataFim);
+            loadTableRealatorios(dataInicio, dataFim);
             valoresRelatorio();
         } catch (ParseException ex) {
             Logger.getLogger(RelatorioView.class.getName()).log(Level.SEVERE, null, ex);

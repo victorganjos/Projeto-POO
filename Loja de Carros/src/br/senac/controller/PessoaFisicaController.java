@@ -10,8 +10,8 @@ import java.util.List;
  * @author victor.ganjos
  */
 public class PessoaFisicaController {
-
-    public static void salvar(long cpf, long rg, Date dataNascimento, int numeroResidencia, String nome, String endereco, String bairro, String cidade, String estado, String telefone, long cep) {
+    
+    public void salvar(long cpf, long rg, Date dataNascimento, int numeroResidencia, String nome, String endereco, String bairro, String cidade, String estado, String telefone, long cep) {
         PessoaFisica p = new PessoaFisica(cpf, rg, dataNascimento, numeroResidencia, nome, endereco, bairro, cidade, estado, telefone, cep);
         PessoaFisicaDAO cliente = new PessoaFisicaDAO();
         cliente.salvar(p);
