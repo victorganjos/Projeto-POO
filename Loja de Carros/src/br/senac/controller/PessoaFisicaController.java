@@ -77,5 +77,9 @@ public class PessoaFisicaController {
         return listaClientes;
 
     }
+    
+    public static String consultaClienteVenda(long cpf){
+        return PessoaFisicaDAO.consultaClienteVenda(cpf);
+    }
 
 }

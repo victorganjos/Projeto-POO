@@ -64,6 +64,11 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         btn_Venda.setText("Venda");
+        btn_Venda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VendaActionPerformed(evt);
+            }
+        });
 
         btn_CadastroUsuario.setText("Cadastro de Usuários");
         btn_CadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +302,13 @@ public class HomePage extends javax.swing.JFrame {
         consultaProduto.setVisible(true);
         HomePage.this.dispose();
     }//GEN-LAST:event_btn_ConsultaProdutoActionPerformed
+
+    private void btn_VendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VendaActionPerformed
+        // TODO add your handling code here:
+        Venda venda = new Venda();
+        venda.setVisible(true);
+        HomePage.this.dispose();
+    }//GEN-LAST:event_btn_VendaActionPerformed
 
     /**
      * @param args the command line arguments

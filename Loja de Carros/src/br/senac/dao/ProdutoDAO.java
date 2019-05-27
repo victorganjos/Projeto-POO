@@ -181,4 +181,42 @@ public class ProdutoDAO {
             ConnectionFactory.fecharConexao(con, stmt);
         }
     }
+    
+    public static ArrayList<Produto> consultaVendaProduto(String placa){
+        
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE placa LIKE ?;");
+            stmt.setString(1,"" + placa + "");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){                
+                Produto produto = new Produto();
+                
+                produto.setId(rs.getInt("id"));
+                produto.setModelo(rs.getString("modelo"));
+                produto.setCor(rs.getString("marca"));
+                produto.setAno(rs.getString("ano"));
+                produto.setCor(rs.getString("cor"));
+                produto.setPlaca(rs.getString("placa"));
+                produto.setValorCompra(rs.getDouble("Valor_Compra"));
+                
+                
+                listaProdutos.add(produto);
+           
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return listaProdutos;
+    }
 }

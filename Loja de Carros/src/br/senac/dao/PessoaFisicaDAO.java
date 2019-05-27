@@ -220,6 +220,31 @@ public class PessoaFisicaDAO {
             ConnectionFactory.fecharConexao(con,stmt);
         }
     }
+    
+    public static String consultaClienteVenda(long cpf){
+        
+        Connection con = ConnectionFactory.obterConexao(); 
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean result = false;
+        String aux = null;
+        
+        try {
+            stmt = con.prepareStatement("SELECT nome FROM cliente WHERE id LIKE ? AND TIPO = 'pf';");
+            stmt.setString(1, ""+cpf+"");
+            rs = stmt.executeQuery();
 
+            if(rs.next()){
+                aux = rs.getString("nome");
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return aux;
+    }
  
 }

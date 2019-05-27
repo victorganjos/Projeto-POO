@@ -69,4 +69,17 @@ public class ProdutoController {
         return listaClientes;
 
     }
+    public static ArrayList<String[]> consultaPorPlaca(String placa) {
+        List<Produto> produto = ProdutoDAO.consultaVendaProduto(placa);
+
+        ArrayList<String[]> listaProdutos = new ArrayList<>();
+
+        for (int i = 0; i < produto.size(); i++) {
+            listaProdutos.add(new String[]{String.valueOf(produto.get(i).getId()), produto.get(i).getModelo(), produto.get(i).getMarca(), produto.get(i).getAno(), produto.get(i).getCor(), produto.get(i).getPlaca(), String.valueOf(produto.get(i).getValorCompra())});
+
+        }
+
+        return listaProdutos;
+
+    }
 }
