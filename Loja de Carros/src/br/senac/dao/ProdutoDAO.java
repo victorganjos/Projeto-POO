@@ -165,6 +165,7 @@ public class ProdutoDAO {
             ConnectionFactory.fecharConexao(con, stmt);
         }
     }
+
     public static void desativar(int id) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
@@ -199,23 +200,23 @@ public class ProdutoDAO {
             ConnectionFactory.fecharConexao(con, stmt);
         }
     }
-    
-    public static ArrayList<Produto> consultaVendaProduto(String placa){
-        
+
+    public static ArrayList<Produto> consultaVendaProduto(String placa) {
+
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         ArrayList<Produto> listaProdutos = new ArrayList<>();
-        
+
         try {
             stmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE placa LIKE ? AND situacao = 'a';");
-            stmt.setString(1,"" + placa + "");
+            stmt.setString(1, "" + placa + "");
             rs = stmt.executeQuery();
-            
-            while(rs.next()){                
+
+            while (rs.next()) {
                 Produto produto = new Produto();
-                
+
                 produto.setId(rs.getInt("id"));
                 produto.setModelo(rs.getString("modelo"));
                 produto.setMarca(rs.getString("marca"));
@@ -223,16 +224,47 @@ public class ProdutoDAO {
                 produto.setCor(rs.getString("cor"));
                 produto.setPlaca(rs.getString("placa"));
                 produto.setValorCompra(rs.getDouble("Valor_Compra"));
-                
-                
+
                 listaProdutos.add(produto);
-           
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
         }
-        finally{
+        return listaProdutos;
+    }
+
+    public static ArrayList<Produto> consultaDois(int id) {
+
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+
+        try {
+
+            stmt = con.prepareStatement("SELECT i.fk_produto , p.modelo, p.valor_compra FROM Pedido AS pe\n"
+                    + "JOIN ITEMVENDA AS i ON pe.fk_itemvenda = i.id\n"
+                    + "JOIN PRODUTO AS p ON i.fk_produto = p.id WHERE fk_venda = "+id+";");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Produto itens = new Produto();
+
+                itens.setId(rs.getInt("i.fk_produto"));
+                itens.setModelo(rs.getString("modelo"));
+                itens.setValorCompra(rs.getDouble("Valor_Compra"));
+
+                listaProdutos.add(itens);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             ConnectionFactory.fecharConexao(con, stmt, rs);
         }
         return listaProdutos;

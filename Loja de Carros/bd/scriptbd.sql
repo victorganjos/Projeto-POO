@@ -1,4 +1,4 @@
-drop database LOJACARROS;
+
 CREATE DATABASE LOJACARROS;
 USE LOJACARROS;
 
@@ -43,6 +43,8 @@ valor_unitario double,
 FOREIGN KEY (fk_produto) REFERENCES PRODUTO(id)
 );
 
+
+
 CREATE TABLE VENDA(
 id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
 fk_cliente int,
@@ -69,7 +71,6 @@ INSERT INTO CLIENTE(nome,nome_fantasia,cnpj,cpf,rg,telefone,endereco,numero_resi
 VALUES('roberto','none',null,36971828810,449519935,'41353829','Marechal Roberto',90,'sp','sp','bel',06767080,'2019-01-01','pf');
 INSERT INTO CLIENTE(nome,nome_fantasia,cnpj,cpf,rg,telefone,endereco,numero_residencia,estado,cidade,bairro,cep,data_nascimento,tipo)
 VALUES('carlos','none',null,36971828811,449519936,'41353820','Marechal Roberto',89,'sp','sp','bel',06767080,'2019-01-01','pf');
-INSERT INTO CLIENTE(nome,nome_fantasia,cnpj,cpf,rg,telefone,endereco,numero_residencia,estado,cidade,bairro,cep,data_nascimento,tipo)
 
 INSERT INTO CLIENTE(nome,nome_fantasia,cnpj,cpf,rg,telefone,endereco,numero_residencia,estado,cidade,bairro,cep,data_nascimento,tipo)
 VALUES('Livraria','Tades',36971828812,null,null,'41353822','Marechal Roberto',70,'sp','sp','bel',06767080,'2019-01-01','pj');
@@ -82,7 +83,7 @@ VALUES('Belenzinho','Armas Belem',36971828815,null,null,'41353822','Marechal Rob
 
 
 INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
-VALUES ('CORSA','CHEVROLET','2019','ROSA','BYH-5555',70.000,'a');
+VALUES ('CORSA','CHEVROLET','2019','ROSA','BYH-5555',70000.00,'a');
 INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
 VALUES ('Uno','Fiat','2001','Preto','BYH-6666',10.000,'a');
 INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
@@ -95,14 +96,9 @@ INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao)
 VALUES ('Gol','wolksvagem','2008','branco','BYH-3333',7.000,'a');
 INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
 VALUES ('Golf','wolksvagem','2017','preto','BYH-5555',70.000,'a');
-
-INSERT INTO ITEMVENDA(fk_produto,valor_unitario)
-VALUES (1,30.000);
-
-INSERT INTO VENDA (fk_cliente,valor_total,data_venda) 
-VALUES (1,100,'2019-05-05');
-
-INSERT INTO PEDIDO (fk_venda,fk_itemvenda) VALUES (1,1);
+INSERT INTO PRODUTO (modelo,marca,ano,cor,placa,valor_compra,situacao) 
+VALUES ('CORSA','CHEVROLET','2019','ROSA','1',70000.00,'a');
+select * from itemvenda;
 
 SELECT v.data_venda,c.cpf,p.modelo,v.valor_total FROM VENDA AS v
 JOIN CLIENTE AS c ON v.fk_cliente = c.id
@@ -110,3 +106,4 @@ JOIN PEDIDO AS pe ON pe.fk_venda = pe.id
 JOIN ITEMVENDA AS i ON pe.fk_itemvenda = i.id
 JOIN PRODUTO AS p ON i.fk_produto = p.id;
 
+Select p.id, p.marca, p.valor_compra from produto p inner join itemVenda pv on p.id = pv.fk_produto  where pv.id = 1;

@@ -16,31 +16,32 @@ import java.util.logging.Logger;
  */
 public class PedidoDAO {
 
-    public void salvar(int idVenda,int idItens, double valorUnitario) {
+    public void salvar(int idVenda, int idItens, double valorUnitario) {
         int aux = 0;
-       
-            Connection con = ConnectionFactory.obterConexao();
-            PreparedStatement stmt = null;
 
-            try {
-                stmt = con.prepareStatement("INSERT INTO ITEMVENDA(fk_produto,valor_unitario) VALUES (?,?); "
-                        + "SET @id_item = LAST_INSERT_ID();");
-                stmt.setInt(1, idItens);
-                stmt.setDouble(2, valorUnitario);
-               /* stmt.executeUpdate();*/
-                System.out.println("Salvar com sucesso!");
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
 
-                stmt = con.prepareStatement("INSERT INTO PEDIDO (fk_venda,fk_itemvenda) VALUES (?,@id_item);");
-                stmt.setInt(1, idVenda);
-                stmt.executeUpdate();
-                System.out.println("Salvar com sucesso!");
-                
-            } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Erro ao salvar");
-            } finally {
-                ConnectionFactory.fecharConexao(con, stmt);
-            }
+        try {
+            stmt = con.prepareStatement("INSERT INTO ITEMVENDA(fk_produto,valor_unitario) VALUES (?,?);");
+            stmt.setInt(1, idItens);
+            stmt.setDouble(2, valorUnitario);
+            stmt.executeUpdate();
+            System.out.println("Salvar com sucesso!");
+
+            stmt = con.prepareStatement("SET @id_item = LAST_INSERT_ID();");
+            stmt.executeUpdate();
+            stmt = con.prepareStatement("INSERT INTO PEDIDO (fk_venda,fk_itemvenda) VALUES (?,@id_item);");
+            stmt.setInt(1, idVenda);
+            stmt.executeUpdate();
+            System.out.println("Salvar com sucesso!");
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro ao salvar");
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt);
+        }
     }
 
     public List<Pedido> consultar() {

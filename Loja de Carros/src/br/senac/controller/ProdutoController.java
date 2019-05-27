@@ -86,4 +86,20 @@ public class ProdutoController{
         return listaProdutos;
 
     }
+    
+    public static ArrayList<String[]> read2(int id) {
+
+        ArrayList<Produto> itens = ProdutoDAO.consultaDois(id);
+        ArrayList<String[]> listaItens = new ArrayList<>();
+
+        for (int i = 0; i < itens.size(); i++) {
+            listaItens.add(new String[]{
+                String.valueOf(itens.get(i).getId()),
+                String.valueOf(itens.get(i).getModelo()),
+                String.valueOf(itens.get(i).getValorCompra())});
+
+        }
+        return listaItens;
+
+    }
 }

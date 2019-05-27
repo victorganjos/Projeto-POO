@@ -5,6 +5,7 @@
  */
 package br.senac.view;
 
+import br.senac.controller.ProdutoController;
 import br.senac.controller.RelatorioController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +53,27 @@ public class RelatorioView extends javax.swing.JFrame {
         tbl_TabelaRelatorio.getColumnModel().getColumn(2).setPreferredWidth(100);
 
     }
+    
+    public void loadTableRelatorio(int id) {
+
+        ArrayList<String[]> listaVendas = ProdutoController.read2(id);
+
+        DefaultTableModel tbItemVenda = new DefaultTableModel();
+
+        tbItemVenda.addColumn("ID Produto");
+        tbItemVenda.addColumn("Modelo");
+        tbItemVenda.addColumn("Valor Unit.");
+        tbl_TabelaRelatorioItensVenda.setModel(tbItemVenda);
+
+        for (String[] c : listaVendas) {
+            tbItemVenda.addRow(c);
+        }
+
+        tbl_TabelaRelatorioItensVenda.getColumnModel().getColumn(0).setPreferredWidth(80); //ID
+        tbl_TabelaRelatorioItensVenda.getColumnModel().getColumn(1).setPreferredWidth(80); //ID
+        tbl_TabelaRelatorioItensVenda.getColumnModel().getColumn(2).setPreferredWidth(100);
+
+    }
 
     private void valoresRelatorio() {
         double auxValorTotal = 0.0;
@@ -81,6 +103,11 @@ public class RelatorioView extends javax.swing.JFrame {
         lbl_ValorTotalItensPeriodo = new javax.swing.JLabel();
         txt_ValorTotalItensPeriodo = new javax.swing.JTextField();
         btn_home = new javax.swing.JButton();
+        btn_DetalharRelatorio = new javax.swing.JButton();
+        txt_DetalharRelatorio = new javax.swing.JTextField();
+        scp_TabelaRelatorioItensVenda = new javax.swing.JScrollPane();
+        tbl_TabelaRelatorioItensVenda = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         pnl_TitleUserPageBackground = new javax.swing.JPanel();
         lbl_TitleLoginPage = new javax.swing.JLabel();
 
@@ -114,6 +141,11 @@ public class RelatorioView extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbl_TabelaRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_TabelaRelatorioMouseClicked(evt);
             }
         });
         scp_TabelaRelatorio.setViewportView(tbl_TabelaRelatorio);
@@ -160,7 +192,7 @@ public class RelatorioView extends javax.swing.JFrame {
         lbl_ValorTotalItensPeriodo.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         lbl_ValorTotalItensPeriodo.setText("Valor total dos itens no período");
         pnl_BuscaRelatorio.add(lbl_ValorTotalItensPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-        pnl_BuscaRelatorio.add(txt_ValorTotalItensPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, -1));
+        pnl_BuscaRelatorio.add(txt_ValorTotalItensPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 180, -1));
 
         btn_home.setText("Home");
         btn_home.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +201,45 @@ public class RelatorioView extends javax.swing.JFrame {
             }
         });
         pnl_BuscaRelatorio.add(btn_home, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, -1));
+
+        btn_DetalharRelatorio.setText("Detalhar");
+        btn_DetalharRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DetalharRelatorioActionPerformed(evt);
+            }
+        });
+        pnl_BuscaRelatorio.add(btn_DetalharRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, 25));
+
+        txt_DetalharRelatorio.setEnabled(false);
+        pnl_BuscaRelatorio.add(txt_DetalharRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 90, 25));
+
+        tbl_TabelaRelatorioItensVenda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Modelo", "Valor Unitario"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scp_TabelaRelatorioItensVenda.setViewportView(tbl_TabelaRelatorioItensVenda);
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setText("Detalhes Itens Venda");
 
         javax.swing.GroupLayout pnl_VendaBackgroundLayout = new javax.swing.GroupLayout(pnl_VendaBackground);
         pnl_VendaBackground.setLayout(pnl_VendaBackgroundLayout);
@@ -183,9 +254,17 @@ public class RelatorioView extends javax.swing.JFrame {
                 .addComponent(lbl_NomeClienteVenda)
                 .addGap(18, 18, 18)
                 .addComponent(pnl_BuscaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addComponent(scp_TabelaRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(pnl_VendaBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(pnl_VendaBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scp_TabelaRelatorioItensVenda)
+                            .addComponent(scp_TabelaRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_VendaBackgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(179, 179, 179))))
         );
         pnl_VendaBackgroundLayout.setVerticalGroup(
             pnl_VendaBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +273,22 @@ public class RelatorioView extends javax.swing.JFrame {
                 .addComponent(lbl_TextoInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pnl_VendaBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(lbl_NomeClienteVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnl_VendaBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(lbl_NomeClienteVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(pnl_BuscaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(pnl_BuscaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_VendaBackgroundLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(scp_TabelaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(scp_TabelaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scp_TabelaRelatorioItensVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
 
         javax.swing.GroupLayout pnl_TitlePageBackgroundLayout = new javax.swing.GroupLayout(pnl_TitlePageBackground);
@@ -291,6 +377,18 @@ public class RelatorioView extends javax.swing.JFrame {
         RelatorioView.this.dispose();
     }//GEN-LAST:event_btn_homeActionPerformed
 
+    private void btn_DetalharRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DetalharRelatorioActionPerformed
+        this.loadTableRelatorio(Integer.parseInt(txt_DetalharRelatorio.getText()));
+    }//GEN-LAST:event_btn_DetalharRelatorioActionPerformed
+
+    private void tbl_TabelaRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_TabelaRelatorioMouseClicked
+        if (tbl_TabelaRelatorio.getSelectedRow() != -1) {
+
+            txt_DetalharRelatorio.setText(tbl_TabelaRelatorio.getValueAt(tbl_TabelaRelatorio.getSelectedRow(), 0).toString());
+
+        }
+    }//GEN-LAST:event_tbl_TabelaRelatorioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -328,7 +426,9 @@ public class RelatorioView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_BuscarRealtorio;
+    private javax.swing.JButton btn_DetalharRelatorio;
     private javax.swing.JButton btn_home;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl_DataFimRelatorio;
     private javax.swing.JLabel lbl_DataInicioRelatorio;
     private javax.swing.JLabel lbl_NomeClienteVenda;
@@ -340,9 +440,12 @@ public class RelatorioView extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_TitleUserPageBackground;
     private javax.swing.JPanel pnl_VendaBackground;
     private javax.swing.JScrollPane scp_TabelaRelatorio;
+    private javax.swing.JScrollPane scp_TabelaRelatorioItensVenda;
     private javax.swing.JTable tbl_TabelaRelatorio;
+    private javax.swing.JTable tbl_TabelaRelatorioItensVenda;
     private javax.swing.JFormattedTextField txt_DataFim;
     private javax.swing.JFormattedTextField txt_DataInicio;
+    private javax.swing.JTextField txt_DetalharRelatorio;
     private javax.swing.JTextField txt_ValorTotalItensPeriodo;
     // End of variables declaration//GEN-END:variables
 public String dataFormato(String data) throws ParseException {
