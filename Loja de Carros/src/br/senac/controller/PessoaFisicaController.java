@@ -78,8 +78,13 @@ public class PessoaFisicaController {
 
     }
     
-    public static String consultaClienteVenda(long cpf){
-        return PessoaFisicaDAO.consultaClienteVenda(cpf);
+    public int consultarPorCPF(long cpf){
+         PessoaFisicaDAO cliente = new  PessoaFisicaDAO();
+        return cliente.consultarPorCPF(cpf);
     }
-
+    public  static String consultarPorCPFString(long cpf){
+         PessoaFisicaDAO cliente = new  PessoaFisicaDAO();
+        return cliente.consultaClienteVenda(cpf);
+    }
+    
 }

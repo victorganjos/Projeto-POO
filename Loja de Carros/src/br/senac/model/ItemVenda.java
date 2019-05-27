@@ -3,24 +3,24 @@ package br.senac.model;
 /**
  * @author victor.ganjos
  */
-public class ItemVenda {
-    private int id, produto, quantidade;
-    private double valorUnit;
+public class ItemVenda extends Pedido {
 
-    public ItemVenda(int id, int produto, int quantidade, double valorUnit) {
+    private int id;
+    private int idProduto;
+    private double valorUnitario;
+
+    public ItemVenda(int id, int idProduto, double valorUnitario) {
         this.id = id;
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.valorUnit = valorUnit;
-    }
-
-    public ItemVenda(int produto, int quantidade, double valorUnit) {
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.valorUnit = valorUnit;
+        this.idProduto = idProduto;
+        this.valorUnitario = valorUnitario;
     }
 
     public ItemVenda() {
+    }
+
+    public ItemVenda(int idProduto, double valorUnitario) {
+        this.idProduto = idProduto;
+        this.valorUnitario = valorUnitario;
     }
 
     public int getId() {
@@ -31,29 +31,20 @@ public class ItemVenda {
         this.id = id;
     }
 
-    public int getProduto() {
-        return produto;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setProduto(int produto) {
-        this.produto = produto;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public double getValorUnit() {
-        return valorUnit;
-    }
-
-    public void setValorUnit(double valorUnit) {
-        this.valorUnit = valorUnit;
-    }
-    
-    
 }

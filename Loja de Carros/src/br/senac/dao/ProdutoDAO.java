@@ -191,7 +191,7 @@ public class ProdutoDAO {
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM produto WHERE placa LIKE ?;");
+            stmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE placa LIKE ?;");
             stmt.setString(1,"" + placa + "");
             rs = stmt.executeQuery();
             

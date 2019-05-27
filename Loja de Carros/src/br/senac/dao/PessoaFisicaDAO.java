@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  * @author victor.ganjos
  */
 public class PessoaFisicaDAO {
-    
+
     public void salvar(PessoaFisica pf) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
-          
-        try {            
+
+        try {
             stmt = con.prepareStatement("INSERT INTO CLIENTE(nome,cpf,rg,telefone,endereco,"
                     + "numero_residencia,estado,cidade,bairro,cep,data_nascimento,tipo) VALUE (?,?,?,?,?,?,?,?,?,?,?,?);");
             stmt.setString(1, pf.getNome());
@@ -35,7 +35,7 @@ public class PessoaFisicaDAO {
             stmt.setLong(10, pf.getCep());
             stmt.setDate(11, new java.sql.Date(pf.getDataNascimento().getTime()));
             stmt.setString(12, pf.getTipo());
-            
+
             stmt.executeUpdate();
             System.out.println("Salvar com sucesso!");
         } catch (SQLException ex) {
@@ -46,22 +46,21 @@ public class PessoaFisicaDAO {
         }
 
     }
-    
-    public List<PessoaFisica> consultar(){
+
+    public List<PessoaFisica> consultar() {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         List<PessoaFisica> clientes = new ArrayList<>();
-        
-        
-        try{
+
+        try {
             stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE TIPO = 'pf'");
             rs = stmt.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 PessoaFisica pf = new PessoaFisica();
-                
+
                 pf.setId(rs.getInt("id"));
                 pf.setNome(rs.getString("nome"));
                 pf.setCpf(rs.getLong("cpf"));
@@ -74,36 +73,33 @@ public class PessoaFisicaDAO {
                 pf.setBairro(rs.getString("bairro"));
                 pf.setCep(rs.getLong("cep"));
                 pf.setDataNascimento(rs.getDate("data_nascimento"));
-                
+
                 clientes.add(pf);
             }
-            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
         }
-        catch(SQLException ex){
-           Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            ConnectionFactory.fecharConexao(con,stmt,rs);
-        }
-       return clientes; 
+        return clientes;
     }
-    
-    public List<PessoaFisica> consultarPorNome(String nome){
+
+    public List<PessoaFisica> consultarPorNome(String nome) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         List<PessoaFisica> clientes = new ArrayList<>();
-        
-        
-        try{
+
+        try {
             stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE nome LIKE ? AND TIPO = 'pf';");
-            stmt.setString(1,"%"+nome+"%");
+            stmt.setString(1, "%" + nome + "%");
             rs = stmt.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 PessoaFisica pf = new PessoaFisica();
-                
+
                 pf.setId(rs.getInt("id"));
                 pf.setNome(rs.getString("nome"));
                 pf.setCpf(rs.getLong("cpf"));
@@ -116,35 +112,56 @@ public class PessoaFisicaDAO {
                 pf.setBairro(rs.getString("bairro"));
                 pf.setCep(rs.getLong("cep"));
                 pf.setDataNascimento(rs.getDate("data_nascimento"));
-                
+
                 clientes.add(pf);
             }
-            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
         }
-        catch(SQLException ex){
-           Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            ConnectionFactory.fecharConexao(con,stmt,rs);
-        }
-       return clientes; 
+        return clientes;
     }
-    
-    public List<PessoaFisica> consultarPorId(int id){
+
+    public int consultarPorCPF(long cpf) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
-        List<PessoaFisica> clientes = new ArrayList<>();
-        
-        
-        try{
-            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ? AND TIPO = 'pf';");
-            stmt.setString(1,""+id+"");
+        int  pf = -1;
+        try {
+            stmt = con.prepareStatement("SELECT id FROM CLIENTE WHERE cpf LIKE ? AND TIPO = 'pf';");
+            stmt.setString(1, "%" + cpf + "%");
             rs = stmt.executeQuery();
-            
-            while(rs.next()){
-                PessoaFisica pf = new PessoaFisica();           
+
+            while (rs.next()) {
+
+                pf=(rs.getInt("id"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
+        }
+        return pf ;
+    }
+
+    public List<PessoaFisica> consultarPorId(int id) {
+        Connection con = ConnectionFactory.obterConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<PessoaFisica> clientes = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM CLIENTE WHERE id LIKE ? AND TIPO = 'pf';");
+            stmt.setString(1, "" + id + "");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                PessoaFisica pf = new PessoaFisica();
                 pf.setId(rs.getInt("id"));
                 pf.setNome(rs.getString("nome"));
                 pf.setCpf(rs.getLong("cpf"));
@@ -157,27 +174,25 @@ public class PessoaFisicaDAO {
                 pf.setBairro(rs.getString("bairro"));
                 pf.setCep(rs.getLong("cep"));
                 pf.setDataNascimento(rs.getDate("data_nascimento"));
-                
+
                 clientes.add(pf);
             }
-            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt, rs);
         }
-        catch(SQLException ex){
-           Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            ConnectionFactory.fecharConexao(con,stmt,rs);
-        }
-       return clientes; 
+        return clientes;
     }
-    
-    public void atualizar(PessoaFisica pf){
+
+    public void atualizar(PessoaFisica pf) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
-        
-        try{
+
+        try {
             stmt = con.prepareStatement("UPDATE CLIENTE SET nome = ?,cpf = ?,rg = ?,telefone = ?,endereco = ?,numero_residencia = ?,estado = ?,cidade = ?,bairro = ?,cep = ?,data_nascimento = ?,tipo = ? WHERE id = ?");
-            
+
             stmt.setString(1, pf.getNome());
             stmt.setLong(2, pf.getCpf());
             stmt.setLong(3, pf.getRg());
@@ -190,61 +205,56 @@ public class PessoaFisicaDAO {
             stmt.setLong(10, pf.getCep());
             stmt.setDate(11, new java.sql.Date(pf.getDataNascimento().getTime()));
             stmt.setString(12, pf.getTipo());
-            stmt.setInt(13,pf.getId());
-            
+            stmt.setInt(13, pf.getId());
+
             stmt.executeUpdate();
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            ConnectionFactory.fecharConexao(con,stmt);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt);
         }
     }
-    
-    public void deletar(int id){
+
+    public void deletar(int id) {
         Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
-        
-        try{
-           stmt = con.prepareStatement("DELETE FROM CLIENTE WHERE id = ?;");
-           
-           stmt.setInt(1, id);
-           
-           stmt.executeUpdate();
-        }
-        catch(SQLException ex){
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM CLIENTE WHERE id = ?;");
+
+            stmt.setInt(1, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
             Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            ConnectionFactory.fecharConexao(con,stmt);
+        } finally {
+            ConnectionFactory.fecharConexao(con, stmt);
         }
     }
-    
-    public static String consultaClienteVenda(long cpf){
-        
-        Connection con = ConnectionFactory.obterConexao(); 
+
+    public static String consultaClienteVenda(long cpf) {
+
+        Connection con = ConnectionFactory.obterConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean result = false;
         String aux = null;
-        
+
         try {
-            stmt = con.prepareStatement("SELECT nome FROM cliente WHERE cpf LIKE ? AND TIPO = 'pf';");
-            stmt.setString(1, ""+cpf+"");
+            stmt = con.prepareStatement("SELECT NOME FROM CLIENTE WHERE CPF LIKE ? AND TIPO = 'PF';");
+            stmt.setString(1, "" + cpf + "");
             rs = stmt.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 aux = rs.getString("nome");
             }
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(PessoaFisicaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+        } finally {
             ConnectionFactory.fecharConexao(con, stmt, rs);
         }
         return aux;
     }
- 
+
 }
